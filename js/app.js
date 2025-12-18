@@ -45,13 +45,25 @@ const filterHandler = (event) => {
   });
 };
 
-const searchPriceHandler = (event) =>{
-  const searcPrice = event.target.parentElement.children[0].value
-  console.log(searcPrice);
-}
+const searchPriceHandler = (event) => {
+  const searcPrice = +event.target.parentElement.children[0].value;
+
+  products.forEach((product) => {
+    const productPrice = product.children[2].innerText;
+    const price = +productPrice.split(" ")[1];
+
+    if (!searcPrice) {
+      product.style.display = "block";
+    } else {
+      searcPrice === price
+        ? (product.style.display = "block")
+        : (product.style.display = "none");
+    }
+  });
+};
 
 buttons.forEach((button) => {
   button.addEventListener("click", filterHandler);
 });
 searchInput.addEventListener("keyup", searchHandler);
-priceButton.addEventListener('click', searchPriceHandler)
+priceButton.addEventListener("click", searchPriceHandler);
