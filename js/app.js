@@ -1,6 +1,10 @@
 const searchInput = document.getElementById("search-input");
 const products = document.querySelectorAll(".product-item");
 const buttons = document.querySelectorAll(".filter");
+const priceButton = document
+  .getElementById("search-price")
+  .querySelector("button");
+console.log(priceButton);
 
 const changeClass = (filter) => {
   buttons.forEach((button) => {
@@ -41,7 +45,13 @@ const filterHandler = (event) => {
   });
 };
 
-searchInput.addEventListener("keyup", searchHandler);
+const searchPriceHandler = (event) =>{
+  const searcPrice = event.target.parentElement.children[0].value
+  console.log(searcPrice);
+}
+
 buttons.forEach((button) => {
   button.addEventListener("click", filterHandler);
 });
+searchInput.addEventListener("keyup", searchHandler);
+priceButton.addEventListener('click', searchPriceHandler)
